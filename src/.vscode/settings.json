@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "request.h": "c",
+        "tqueue.h": "c",
+        "pthread.h": "c"
+    }
+}

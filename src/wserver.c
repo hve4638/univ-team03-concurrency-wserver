@@ -35,11 +35,11 @@ int main(int argc, char *argv[]) {
     // now, get to work
     int listen_fd = open_listen_fd_or_die(port);
     while (1) {
-	struct sockaddr_in client_addr;
-	int client_len = sizeof(client_addr);
-	int conn_fd = accept_or_die(listen_fd, (sockaddr_t *) &client_addr, (socklen_t *) &client_len);
-	request_handle(conn_fd);
-	close_or_die(conn_fd);
+		struct sockaddr_in client_addr;
+		int client_len = sizeof(client_addr);
+		int conn_fd = accept_or_die(listen_fd, (sockaddr_t *) &client_addr, (socklen_t *) &client_len);
+		request_handle(conn_fd);
+		close_or_die(conn_fd);
     }
     return 0;
 }

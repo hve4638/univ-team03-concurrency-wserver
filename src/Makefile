@@ -4,14 +4,14 @@
 
 CC = gcc
 CFLAGS = -Wall
-OBJS = wserver.o wclient.o request.o io_helper.o 
+OBJS = wserver.o wclient.o request.o io_helper.o tqueue.o
 
 .SUFFIXES: .c .o 
 
 all: wserver wclient spin.cgi
 
-wserver: wserver.o request.o io_helper.o
-	$(CC) $(CFLAGS) -o wserver wserver.o request.o io_helper.o 
+wserver: wserver.o request.o io_helper.o tqueue.o
+	$(CC) $(CFLAGS) -o wserver wserver.o request.o io_helper.o tqueue.o
 
 wclient: wclient.o io_helper.o
 	$(CC) $(CFLAGS) -o wclient wclient.o io_helper.o
@@ -20,6 +20,11 @@ spin.cgi: spin.c
 	$(CC) $(CFLAGS) -o spin.cgi spin.c
 
 .c.o:
+	echo #
+	echo #
+	echo # ECHO: $@ $<
+	echo #
+	echo #
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:

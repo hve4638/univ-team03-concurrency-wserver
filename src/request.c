@@ -141,6 +141,8 @@ void request_serve_static(int fd, char *filename, int filesize) {
     munmap_or_die(srcp, filesize);
 }
 
+void request_process(int fd, char buf[MAXBUF], char method[MAXBUF], char uri[MAXBUF], char version[MAXBUF]);
+
 // handle a request
 void request_handle(int fd) {
     int is_static;
@@ -150,6 +152,15 @@ void request_handle(int fd) {
     
     readline_or_die(fd, buf, MAXBUF);
     sscanf(buf, "%s %s %s", method, uri, version);
+    
+    request_process(fd, buf, method, uri, version);
+}
+
+void request_process(int fd, char buf[MAXBUF], char method[MAXBUF], char uri[MAXBUF], char version[MAXBUF]) {
+    int is_static;
+    struct stat sbuf;
+    char filename[MAXBUF], cgiargs[MAXBUF];
+
     printf("method:%s uri:%s version: %s\n", method, uri, version);
     
     if (strcasecmp(method, "GET")) {
