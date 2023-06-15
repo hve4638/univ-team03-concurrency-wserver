@@ -31,8 +31,9 @@ int main(int argc, char *argv[]) {
     }
 
     double t1 = get_seconds();
-    while ((get_seconds() - t1) < spin_for)
-	sleep(1);
+    while ((get_seconds() - t1) < spin_for) {
+        system("./wclient 127.0.0.1 8000 /index.html");
+    }
     double t2 = get_seconds();
     
     /* Make the response body */

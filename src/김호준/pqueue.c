@@ -11,7 +11,7 @@ typedef struct {
     Node* nodes;
     int capacity;
     int size;
-    pthread_mutex_t mutex;
+    pthread_mutex_t lock;
 } PriorityQueue;
 
 void PriorityQueue_Init(PriorityQueue* queue, int capacity) {

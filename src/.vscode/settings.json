@@ -2,6 +2,11 @@
     "files.associations": {
         "request.h": "c",
         "tqueue.h": "c",
-        "pthread.h": "c"
+        "pthread.h": "c",
+        "io_helper.h": "c",
+        "reqthread.h": "c",
+        "reqphase.h": "c",
+        "requestinfo.h": "c",
+        "tpqueue.h": "c"
     }
 }

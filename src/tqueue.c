@@ -6,14 +6,14 @@ typedef struct tqueue_node {
     struct tqueue_node* next;
 } tqueue_node;
 
-int tqueue_init(tqueue* queue) {
+int tqueue_init(TQueue* queue) {
     queue->first = 0;
     queue->last = 0;
     queue->lock = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(queue->lock, NULL);
 }
 
-int tqueue_destroy(tqueue* queue) {
+int tqueue_destroy(TQueue* queue) {
     while(tqueue_pop(queue) != -1) {
         
     }
@@ -21,7 +21,7 @@ int tqueue_destroy(tqueue* queue) {
     queue->lock = 0;
 }
 
-int tqueue_push(tqueue* queue, int tid) {
+int tqueue_push(TQueue* queue, int tid) {
     pthread_mutex_lock(queue->lock);
     tqueue_node* node = (tqueue_node*)malloc(sizeof(tqueue_node));
     node->tid = tid;
@@ -35,7 +35,7 @@ int tqueue_push(tqueue* queue, int tid) {
     pthread_mutex_unlock(queue->lock);
 }
 
-int tqueue_pop(tqueue* queue) {
+int tqueue_pop(TQueue* queue) {
     int result;
     tqueue_node* node;
     tqueue_node* next;
